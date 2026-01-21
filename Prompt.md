@@ -275,11 +275,29 @@ Rules:
 * Text review
 * Admin moderation
 
+### Review Abuse Protection
+
+* You already have reviews, but add rules:
+* One review per order per product
+* Admin approve before publish
+* Edit/delete review (limited time)
+
+### Coupon & Offers System
+
+* Flat / % discount
+* Expiry date
+* First-order coupon
+
 ### Cart
 
 * Add / remove products
 * Quantity updates
 * Tax & delivery calculation
+
+### Inventory Alerts
+
+* Low stock email to admin
+* Auto-disable out-of-stock products
 
 ### Checkout
 
