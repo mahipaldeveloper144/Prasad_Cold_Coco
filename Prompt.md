@@ -481,64 +481,37 @@ This project must:
 
 ## ✅ What’s officially locked in
 
-Next.js (App Router)
-
-Full Auth System
-
-Password login
-
-Email OTP login
-
-Google OAuth login
-
-Forgot / Change password
-
-Gmail SMTP via prasadcoldcoco@gmail.com
-
-Admin Panel (complete)
-
-Product Reviews & Ratings
-
-SEO-first architecture
-
-PWA (installable, offline-ready)
-
-Zero-404 routing rule
-
-Single-point theme control
-
-Primary: Chocolate
-
-Secondary: Cream
-
-Production + Local setup
-
-Security best practices
-
-This is not a demo prompt — it’s something you could:
-
-Use for your own brand
-
-Sell as a custom solution
-
-Extend into a SaaS later
+> Next.js (App Router)
+> Full Auth System
+> Password login
+> Email OTP login
+> Google OAuth login
+> Forgot / Change password
+> Gmail SMTP via prasadcoldcoco@gmail.com
+> Admin Panel (complete)
+> Product Reviews & Ratings
+> SEO-first architecture
+> PWA (installable, offline-ready)
+> Zero-404 routing rule
+> Single-point theme control
+> Primary: Chocolate
+> Secondary: Cream
+> Production + Local setup
+> Security best practices
+> This is not a demo prompt — it’s something you could:
+> Use for your own brand
+> Sell as a custom solution
+> Extend into a SaaS later
 
 -------
 
 ## 🚀 How to use this with Google Antigravity (recommended flow)
 
-Open Google Antigravity
-
-Paste the entire prompt
-
-Ask Antigravity to:
-
-Generate folder structure first
-
-Then backend APIs
-
-Then auth flows
-
-Then admin panel
-
-Build feature-by-feature (don’t generate everything in one shot)
+> Open Google Antigravity
+> Paste the entire prompt
+> Ask Antigravity to:
+> Generate folder structure first
+> Then backend APIs
+> Then auth flows
+> Then admin panel
+> Build feature-by-feature (don’t generate everything in one shot)
