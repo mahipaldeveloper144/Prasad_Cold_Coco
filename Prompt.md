@@ -515,3 +515,4 @@ This project must:
 > Then auth flows
 > Then admin panel
 > Build feature-by-feature (don’t generate everything in one shot)
+> Add setup full detailed guid in a seprate .md file
