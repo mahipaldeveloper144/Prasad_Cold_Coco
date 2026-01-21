@@ -461,7 +461,7 @@ This project must:
 -----
 
 
-✅ What’s officially locked in
+## ✅ What’s officially locked in
 
 Next.js (App Router)
 
@@ -505,11 +505,13 @@ Sell as a custom solution
 
 Extend into a SaaS later
 
-🚀 How to use this with Google Antigravity (recommended flow)
+-------
+
+## 🚀 How to use this with Google Antigravity (recommended flow)
 
 Open Google Antigravity
 
-Paste the entire ecomPrompt.md
+Paste the entire prompt
 
 Ask Antigravity to:
 
