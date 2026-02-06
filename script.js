@@ -1,6 +1,6 @@
 // --- Countdown Timer ---
 // Targeted Date: February 15th, 2026
-const countdownDate = new Date("Feb 6, 2026 15:03:00").getTime();
+const countdownDate = new Date("Feb 17, 2026 10:00:00").getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
