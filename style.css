@@ -283,6 +283,14 @@ body:hover .marquee-bg img {
     max-width: 600px;
 }
 
+.countdown-containerLive {
+    display: block !important;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    max-width: 600px;
+}
+
 .countdown-item {
     background: white;
     padding: 1.5rem 0.5rem;
@@ -309,6 +317,49 @@ body:hover .marquee-bg img {
     letter-spacing: 1px;
     color: var(--text-muted);
     font-weight: 600;
+}
+
+.live-text {
+    font-size: clamp(3rem, 10vw, 5rem);
+    font-weight: 900;
+    text-align: center;
+    background: linear-gradient(45deg, #4E342E, #8D6E63, #D2691E, #FFB300, #5D4037);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 5s ease infinite, live-pulse 2s infinite;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: block;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes live-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* --- Social Links --- */

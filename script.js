@@ -1,6 +1,6 @@
 // --- Countdown Timer ---
 // Targeted Date: February 15th, 2026
-const countdownDate = new Date("Feb 17, 2026 10:00:00").getTime();
+const countdownDate = new Date("Feb 6, 2026 15:03:00").getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -19,8 +19,70 @@ function updateCountdown() {
 
     if (distance < 0) {
         clearInterval(countdownInterval);
-        document.querySelector('.countdown-container').innerHTML = "<h3>We are LIVE!</h3>";
+        const countdownContainer = document.querySelector('.countdown-container');
+        countdownContainer.classList.add('countdown-containerLive');
+        countdownContainer.innerHTML = "<h3 class='live-text'>We are LIVE!</h3>";
+
+        // Trigger celebration
+        launchCelebration();
     }
+}
+
+function launchCelebration() {
+    const duration = 15 * 1000;
+    const animationEnd = Date.now() + duration;
+
+    // --- Side Blasts (Bottom Corners) ---
+    const blastDefaults = { startVelocity: 45, spread: 80, ticks: 110, zIndex: 1000 };
+    const blastInterval = setInterval(function () {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(blastInterval);
+        }
+
+        const particleCount = 75 * (timeLeft / duration);
+
+        // Blast from Bottom Left
+        confetti(Object.assign({}, blastDefaults, {
+            particleCount,
+            angle: 60,
+            origin: { x: 0, y: 1 }
+        }));
+
+        // Blast from Bottom Right
+        confetti(Object.assign({}, blastDefaults, {
+            particleCount,
+            angle: 120,
+            origin: { x: 1, y: 1 }
+        }));
+    }, 250);
+
+    // --- Rain Effect (Top) ---
+    // Custom colors matching the brand
+    const colors = ['#D2691E', '#4E342E', '#FFD700', '#ffffff', '#FF5733'];
+
+    const rainInterval = setInterval(function () {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+            return clearInterval(rainInterval);
+        }
+
+        // Spawn drops randomly across the top
+        confetti({
+            particleCount: 5,
+            angle: 270, // Downwards
+            spread: 55,
+            origin: { x: Math.random(), y: -0.1 }, // Start slightly above screen
+            colors: colors,
+            startVelocity: 10,
+            gravity: 0.9,
+            scalar: 0.9,
+            ticks: 300,
+            zIndex: 999
+        });
+    }, 50);
 }
 
 const countdownInterval = setInterval(updateCountdown, 1000);
