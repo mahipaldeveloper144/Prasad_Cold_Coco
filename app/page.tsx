@@ -21,6 +21,8 @@ async function getProducts() {
         price: product.price,
         image: product.image,
         refId: product.refId,
+        ingredients: product.ingredients,
+        instructions: product.instructions,
     }));
 }
 
@@ -95,10 +97,82 @@ export default async function Home() {
                 </div>
             </section>
 
+            {/* FAQ Section */}
+            <section className="bg-white py-20">
+                <div className="max-w-4xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-[#4E342E] text-center mb-12">Frequently Asked Questions</h2>
+                    <div className="space-y-6">
+                        <div className="border-b border-gray-100 pb-4">
+                            <h3 className="text-lg font-bold text-[#4E342E] mb-2">How do I order from Prasad Cold Coco?</h3>
+                            <p className="text-[#4E342E]/70">Simply click the "Order on WhatsApp" button on any product. It will open a chat with us with your order details pre-filled. We will then confirm the delivery charges and share payment details.</p>
+                        </div>
+                        <div className="border-b border-gray-100 pb-4">
+                            <h3 className="text-lg font-bold text-[#4E342E] mb-2">Do you ship outside Surat?</h3>
+                            <p className="text-[#4E342E]/70">Yes! We ship our Cold Coco Powder pan-India. Fresh Mango Pulp and ready-to-drink Cold Coco are currently available for delivery within Surat only.</p>
+                        </div>
+                        <div className="border-b border-gray-100 pb-4">
+                            <h3 className="text-lg font-bold text-[#4E342E] mb-2">How long does the Coco Powder last?</h3>
+                            <p className="text-[#4E342E]/70">Our Cold Coco Powder has a shelf life of 6 months when stored in a cool, dry place.</p>
+                        </div>
+                    </div>
+                </div>
+                {/* FAQ Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": [
+                                {
+                                    "@type": "Question",
+                                    "name": "How do I order from Prasad Cold Coco?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Simply click the 'Order on WhatsApp' button on any product. It will open a chat with us with your order details pre-filled."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Do you ship outside Surat?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Yes! We ship our Cold Coco Powder pan-India. Fresh items are Surat-only."
+                                    }
+                                }
+                            ]
+                        })
+                    }}
+                />
+            </section>
+
             {/* Footer */}
-            <footer className="bg-[#4E342E] text-[#FFF1DC]/60 py-12 text-center text-sm">
-                <p>© {new Date().getFullYear()} Prasad Cold Coco. All rights reserved.</p>
-                <p className="mt-2">Surat, Gujarat, India.</p>
+            <footer className="bg-[#4E342E] text-[#FFF1DC]/60 py-16 px-4">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                    <div>
+                        <h3 className="text-[#FFF1DC] font-bold text-lg mb-4">Prasad Cold Coco</h3>
+                        <p className="text-sm">Authentic Surat taste, delivered fresh to your doorstep. Famous for our creamy Cold Coco and pure Mango Pulp.</p>
+                    </div>
+                    <div>
+                        <h3 className="text-[#FFF1DC] font-bold text-lg mb-4">Quick Links</h3>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="/" className="hover:text-[#25D366] transition-colors">Home</a></li>
+                            <li><a href="#products" className="hover:text-[#25D366] transition-colors">Products</a></li>
+                            <li><a href="/privacy-policy" className="hover:text-[#25D366] transition-colors">Privacy Policy</a></li>
+                            <li><a href="/refund-policy" className="hover:text-[#25D366] transition-colors">Refund Policy</a></li>
+                            <li><a href="/shipping-policy" className="hover:text-[#25D366] transition-colors">Shipping Policy</a></li>
+                            <li><a href="/contact" className="hover:text-[#25D366] transition-colors">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="text-[#FFF1DC] font-bold text-lg mb-4">Contact</h3>
+                        <p className="text-sm">Surat, Gujarat, India.</p>
+                        <p className="text-sm mt-2">WhatsApp: +91 90997 92454</p>
+                    </div>
+                </div>
+                <div className="border-t border-[#FFF1DC]/10 mt-12 pt-8 text-center text-sm">
+                    <p>© {new Date().getFullYear()} Prasad Cold Coco. All rights reserved.</p>
+                </div>
             </footer>
         </main>
     );

@@ -33,111 +33,180 @@ export default function AddProductPage() {
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                <form action={createProduct} className="space-y-6">
-                    {/* Product Name */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Product Name *
-                        </label>
-                        <input
-                            name="name"
-                            type="text"
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                            placeholder="e.g. Surat Cold Coco Premium"
-                        />
+                <form action={createProduct} className="space-y-8">
+                    {/* Basic Info Section */}
+                    <div className="space-y-6">
+                        <h2 className="text-lg font-semibold text-[#4E342E] border-b pb-2">Basic Information</h2>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Product Name *
+                            </label>
+                            <input
+                                name="name"
+                                type="text"
+                                required
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="e.g. Surat Cold Coco Premium"
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Reference ID (Unique SKU) *
+                                </label>
+                                <input
+                                    name="refId"
+                                    type="text"
+                                    required
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                    placeholder="e.g. COCO-PREM-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Price (₹) *
+                                </label>
+                                <input
+                                    name="price"
+                                    type="number"
+                                    step="0.01"
+                                    required
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                    placeholder="350"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Category
+                            </label>
+                            <select
+                                name="category"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                            >
+                                <option value="Coco">Cold Coco</option>
+                                <option value="Mango">Mango Pulp</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Image URL *
+                            </label>
+                            <input
+                                name="image"
+                                type="url"
+                                required
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="https://i.imgur.com/..."
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Short Description *
+                            </label>
+                            <textarea
+                                name="description"
+                                rows={3}
+                                required
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="Brief summary of the product..."
+                            ></textarea>
+                        </div>
                     </div>
 
-                    {/* Reference ID (SKU) */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Reference ID (Unique SKU) *
-                        </label>
-                        <input
-                            name="refId"
-                            type="text"
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                            placeholder="e.g. COCO-PREM-500"
-                        />
+                    {/* Ecommerce Details Section */}
+                    <div className="space-y-6 pt-6 border-t border-gray-100">
+                        <h2 className="text-lg font-semibold text-[#4E342E] border-b pb-2">Ecommerce Details</h2>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Ingredients
+                            </label>
+                            <textarea
+                                name="ingredients"
+                                rows={2}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="Coco powder, sugar, milk..."
+                            ></textarea>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Preparation Instructions
+                            </label>
+                            <textarea
+                                name="instructions"
+                                rows={2}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="Mix with hot milk and chill..."
+                            ></textarea>
+                        </div>
                     </div>
 
-                    {/* Price */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Price (₹) *
-                        </label>
-                        <input
-                            name="price"
-                            type="number"
-                            step="0.01"
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                            placeholder="350"
-                        />
+                    {/* SEO Section */}
+                    <div className="space-y-6 pt-6 border-t border-gray-100">
+                        <h2 className="text-lg font-semibold text-[#4E342E] border-b pb-2">SEO Optimization (Metadata)</h2>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                SEO Title
+                            </label>
+                            <input
+                                name="seoTitle"
+                                type="text"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="Leave blank to use product name"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                SEO Description
+                            </label>
+                            <textarea
+                                name="seoDescription"
+                                rows={2}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="Meta description for search engines (max 160 characters)"
+                            ></textarea>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                SEO Keywords
+                            </label>
+                            <input
+                                name="seoKeywords"
+                                type="text"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
+                                placeholder="cold coco, surat coco, aam ras..."
+                            />
+                        </div>
                     </div>
 
-                    {/* Category */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Category
-                        </label>
-                        <select
-                            name="category"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                        >
-                            <option value="Coco">Cold Coco</option>
-                            <option value="Mango">Mango Pulp</option>
-                            <option value="Other">Other</option>
-                        </select>
+                    {/* Visibility Section */}
+                    <div className="space-y-6 pt-6 border-t border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <input
+                                name="inStock"
+                                type="checkbox"
+                                defaultChecked
+                                id="inStock"
+                                className="w-5 h-5 text-[#4E342E] border-gray-300 rounded focus:ring-[#4E342E]"
+                            />
+                            <label htmlFor="inStock" className="text-sm font-medium text-gray-700 select-none">
+                                In Stock (Available for ordering)
+                            </label>
+                        </div>
                     </div>
 
-                    {/* Image URL */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Image URL *
-                        </label>
-                        <input
-                            name="image"
-                            type="url"
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                            placeholder="https://i.imgur.com/..."
-                        />
-                        <p className="text-xs text-gray-500 mt-1">
-                            For Phase 1, paste a direct image link (e.g. from Imgur or Cloudinary).
-                        </p>
-                    </div>
-
-                    {/* Description */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Description
-                        </label>
-                        <textarea
-                            name="description"
-                            rows={4}
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                            placeholder="Describe the taste, ingredients, and usage..."
-                        ></textarea>
-                    </div>
-
-                    {/* In Stock Toggle */}
-                    <div className="flex items-center gap-3">
-                        <input
-                            name="inStock"
-                            type="checkbox"
-                            defaultChecked
-                            id="inStock"
-                            className="w-5 h-5 text-[#4E342E] border-gray-300 rounded focus:ring-[#4E342E]"
-                        />
-                        <label htmlFor="inStock" className="text-sm font-medium text-gray-700 select-none">
-                            In Stock (Available for ordering)
-                        </label>
-                    </div>
-
-                    <div className="pt-4 border-t border-gray-100 flex justify-end">
+                    <div className="pt-6 border-t border-gray-100 flex justify-end">
                         <SubmitButton />
                     </div>
                 </form>

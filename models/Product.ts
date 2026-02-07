@@ -8,6 +8,12 @@ export interface IProduct extends Document {
     category: string;
     inStock: boolean;
     refId: string; // SKU or Reference ID for manual orders
+    seoTitle: string;
+    seoDescription: string;
+    seoKeywords: string;
+    ingredients: string;
+    instructions: string;
+    slug: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -21,6 +27,12 @@ const ProductSchema: Schema = new Schema(
         category: { type: String, required: true, default: "General" },
         inStock: { type: Boolean, default: true },
         refId: { type: String, required: true, unique: true },
+        seoTitle: { type: String },
+        seoDescription: { type: String },
+        seoKeywords: { type: String },
+        ingredients: { type: String },
+        instructions: { type: String },
+        slug: { type: String, required: true, unique: true },
     },
     {
         timestamps: true,

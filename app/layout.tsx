@@ -71,46 +71,71 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Prasad Cold Coco",
-        "image": "https://prasadcoldcoco.in/Logo2.png",
-        "@id": "https://prasadcoldcoco.in",
-        "url": "https://prasadcoldcoco.in",
-        "telephone": "+91-XXXXXXXXXX", // Update with actual phone
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Surat, Gujarat",
-            "addressLocality": "Surat",
-            "postalCode": "395001",
-            "addressRegion": "Gujarat",
-            "addressCountry": "IN"
+    const jsonLd = [
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Prasad Cold Coco",
+            "image": "https://prasadcoldcoco.in/Logo2.png",
+            "@id": "https://prasadcoldcoco.in",
+            "url": "https://prasadcoldcoco.in",
+            "telephone": "+919099792454",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Surat, Gujarat",
+                "addressLocality": "Surat",
+                "postalCode": "395001",
+                "addressRegion": "Gujarat",
+                "addressCountry": "IN"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 21.1702,
+                "longitude": 72.8311
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday"
+                ],
+                "opens": "09:00",
+                "closes": "23:00"
+            },
+            "sameAs": [
+                "https://www.instagram.com/prasadcoldcoco",
+                "https://www.facebook.com/prasadcoldcoco"
+            ]
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 21.1702,
-            "longitude": 72.8311
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Prasad Cold Coco",
+            "url": "https://prasadcoldcoco.in",
+            "logo": "https://prasadcoldcoco.in/Logo2.png",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+919099792454",
+                "contactType": "customer service"
+            }
         },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday"
-            ],
-            "opens": "09:00",
-            "closes": "23:00"
-        },
-        "sameAs": [
-            "https://www.instagram.com/prasadcoldcoco", // Update with actual social links
-            "https://www.facebook.com/prasadcoldcoco"
-        ]
-    };
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Prasad Cold Coco",
+            "url": "https://prasadcoldcoco.in",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://prasadcoldcoco.in/#products",
+                "query-input": "required name=search_term_string"
+            }
+        }
+    ];
 
     return (
         <html lang="en">

@@ -7,27 +7,52 @@ import { redirect } from "next/navigation";
 
 export async function createProduct(formData: FormData) {
     // Extract data from form
-    const rawData = {
-        name: formData.get("name") as string,
-        description: formData.get("description") as string,
-        price: parseFloat(formData.get("price") as string),
-        category: formData.get("category") as string,
-        image: formData.get("image") as string, // For now, we expect a URL string
-        refId: formData.get("refId") as string,
-        inStock: formData.get("inStock") === "on", // Checkbox returns "on" if checked
+    const name = formData.get("name") as string;
+    const description = formData.get("description") as string;
+    const price = parseFloat(formData.get("price") as string);
+    const category = formData.get("category") as string;
+    const image = formData.get("image") as string;
+    const refId = formData.get("refId") as string;
+    const inStock = formData.get("inStock") === "on";
+    const seoTitle = formData.get("seoTitle") as string;
+    const seoDescription = formData.get("seoDescription") as string;
+    const seoKeywords = formData.get("seoKeywords") as string;
+    const ingredients = formData.get("ingredients") as string;
+    const instructions = formData.get("instructions") as string;
+
+    // Generate slug from name
+    const slug = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+    const productData = {
+        name,
+        description,
+        price,
+        category,
+        image,
+        refId,
+        inStock,
+        seoTitle: seoTitle || name,
+        seoDescription: seoDescription || description.substring(0, 160),
+        seoKeywords,
+        ingredients,
+        instructions,
+        slug,
     };
 
     // Basic validation
-    if (!rawData.name || !rawData.price || !rawData.refId) {
+    if (!name || !price || !refId) {
         throw new Error("Missing required fields");
     }
 
     try {
         await connectDB();
-        await Product.create(rawData);
+        await Product.create(productData);
     } catch (error) {
         console.error("Database Error:", error);
-        throw new Error("Failed to create product.");
+        throw new Error("Failed to create product. Maybe SKU or Slug already exists?");
     }
 
     // Revalidate the product pages so the new item shows up instantly

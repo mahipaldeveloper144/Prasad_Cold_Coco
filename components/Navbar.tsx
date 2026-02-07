@@ -29,8 +29,8 @@ export default function Navbar() {
                         <Link href="#products" className="hover:text-[#25D366] transition-colors font-medium">
                             Products
                         </Link>
-                        <Link href="#about" className="hover:text-[#25D366] transition-colors font-medium">
-                            About
+                        <Link href="/contact" className="hover:text-[#25D366] transition-colors font-medium">
+                            Contact
                         </Link>
                     </div>
 
