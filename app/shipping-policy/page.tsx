@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function ShippingPolicy() {
     return (
@@ -10,15 +11,16 @@ export default function ShippingPolicy() {
                     <p>Last Updated: February 7, 2026</p>
 
                     <h2 className="text-2xl font-bold text-[#4E342E]">1. Delivery Areas</h2>
-                    <p>We currently deliver across Surat and ship our powder products pan-India. Fresh Mango Pulp is only available for local delivery in Surat.</p>
+                    <p>We currently deliver across Ahmedabad and ship our powder products pan-India. Fresh items are only available for local delivery in Ahmedabad.</p>
 
                     <h2 className="text-2xl font-bold text-[#4E342E]">2. Timelines</h2>
-                    <p>Local Delivery (Surat): Same day or Next day.<br />Pan-India Shipping: 3-5 business days depending on location.</p>
+                    <p>Local Delivery (Ahmedabad): Same day or Next day.<br />Pan-India Shipping: 3-5 business days depending on location.</p>
 
                     <h2 className="text-2xl font-bold text-[#4E342E]">3. Shipping Charges</h2>
                     <p>Shipping charges are calculated based on your location and weight of the order. These will be shared with you during our WhatsApp conversation before payment.</p>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 }

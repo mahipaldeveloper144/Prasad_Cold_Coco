@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import connectDB from "@/lib/mongodb";
 import Product from "@/models/Product";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, ShoppingBag } from "lucide-react";
+import DeleteButton from "@/components/DeleteButton";
 
 export const dynamic = "force-dynamic";
 
@@ -31,82 +32,82 @@ export default async function AdminDashboard() {
                 </Link>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500 font-semibold tracking-wider">
-                            <th className="px-6 py-4">Image</th>
-                            <th className="px-6 py-4">Product Name</th>
-                            <th className="px-6 py-4">Price</th>
-                            <th className="px-6 py-4">Status</th>
-                            <th className="px-6 py-4 text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                        {products.map((product: any) => (
-                            <tr key={product._id} className="hover:bg-gray-50 transition-colors">
-                                <td className="px-6 py-4">
-                                    <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                                        <Image
-                                            src={product.image}
-                                            alt={product.name}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4">
-                                    <div className="font-medium text-gray-900">{product.name}</div>
-                                    <div className="text-xs text-gray-400">Ref: {product.refId}</div>
-                                </td>
-                                <td className="px-6 py-4 font-medium text-gray-700">₹{product.price}</td>
-                                <td className="px-6 py-4">
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-medium ${product.inStock
-                                            ? "bg-green-100 text-green-700"
-                                            : "bg-red-100 text-red-700"
-                                            }`}
-                                    >
-                                        {product.inStock ? "In Stock" : "Out of Stock"}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 text-right">
-                                    <div className="flex items-center justify-end gap-2">
-                                        <button className="p-2 text-gray-400 hover:text-[#4E342E] hover:bg-[#4E342E]/5 rounded-md transition-colors">
-                                            <Edit className="w-4 h-4" />
-                                        </button>
-                                        <form
-                                            action={async () => {
-                                                "use server";
-                                                // Dynamic import to avoid circular dependencies if any, 
-                                                // or just standard server action pattern.
-                                                // Since we are in the same file as "use server", we need to be careful? 
-                                                // Actually, this file is a Server Component, so we can import the server action from actions.ts
-                                                const { deleteProduct } = await import("@/app/lib/actions");
-                                                await deleteProduct(product._id);
-                                            }}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr className="bg-gray-50 border-b border-gray-200 text-[10px] uppercase text-gray-500 font-bold tracking-widest">
+                                <th className="px-6 py-5">Product</th>
+                                <th className="px-6 py-5">Price</th>
+                                <th className="px-6 py-5">Status</th>
+                                <th className="px-6 py-5 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100 uppercase text-xs">
+                            {products.map((product: any) => (
+                                <tr key={product._id} className="hover:bg-gray-50/50 transition-colors group">
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center gap-4">
+                                            <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-gray-100 border border-gray-200 flex-shrink-0">
+                                                <Image
+                                                    src={product.image}
+                                                    alt={product.name}
+                                                    fill
+                                                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                                />
+                                            </div>
+                                            <div>
+                                                <div className="font-bold text-gray-900 mb-0.5">{product.name}</div>
+                                                <div className="text-[10px] text-gray-400 font-medium">REF: {product.refId}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 font-bold text-gray-700">₹{product.price}</td>
+                                    <td className="px-6 py-4">
+                                        <span
+                                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold ${product.inStock
+                                                ? "bg-green-100 text-green-700"
+                                                : "bg-red-100 text-red-700"
+                                                }`}
                                         >
-                                            <button
-                                                type="submit"
-                                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                                            <span className={`w-1 h-1 rounded-full mr-1.5 ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                                            {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 text-right">
+                                        <div className="flex items-center justify-end gap-1">
+                                            <Link
+                                                href={`/admin/products/${product._id}/edit`}
+                                                className="p-2 text-gray-400 hover:text-[#4E342E] hover:bg-[#4E342E]/5 rounded-xl transition-all"
                                             >
-                                                <Trash2 className="w-4 h-4" />
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
+                                                <Edit className="w-4 h-4" />
+                                            </Link>
+                                            <DeleteButton
+                                                itemName={product.name}
+                                                onDelete={async () => {
+                                                    "use server"
+                                                    const { deleteProduct } = await import("@/app/lib/actions");
+                                                    await deleteProduct(product._id);
+                                                }}
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
 
-                        {products.length === 0 && (
-                            <tr>
-                                <td colSpan={5} className="px-6 py-8 text-center text-gray-400">
-                                    No products found. Add your first product!
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                            {products.length === 0 && (
+                                <tr>
+                                    <td colSpan={4} className="px-6 py-12 text-center">
+                                        <div className="flex flex-col items-center gap-2">
+                                            <ShoppingBag className="w-10 h-10 text-gray-200" />
+                                            <p className="text-gray-400 font-medium">No products found. Add your first product!</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         template: "%s | Prasad Cold Coco",
     },
     description: "Experience the authentic taste of Surat with Prasad Cold Coco. Order our famous Cold Coco Powder and fresh Mango Pulp directly via WhatsApp. Pure, delicious, and delivered to your doorstep.",
-    keywords: ["Cold Coco", "Surat Cold Coco", "Mango Pulp", "Prasad Cold Coco", "Surat Famous Food", "Instant Cold Coco Powder", "Aam Ras", "Surat Desserts"],
+    keywords: ["Cold Coco", "Surat Cold Coco", "Mango Pulp", "Prasad Cold Coco", "Ahmedabad Cold Coco", "Nikol Ahmedabad Food", "Surat Famous Food", "Instant Cold Coco Powder", "Aam Ras", "Surat Desserts"],
     authors: [{ name: "Prasad Cold Coco" }],
     creator: "Prasad Cold Coco",
     publisher: "Prasad Cold Coco",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: "https://prasadcoldcoco.in",
         siteName: "Prasad Cold Coco",
         title: "Prasad Cold Coco - Surat's Famous Cold Coco & Mango Pulp",
-        description: "Order the authentic and famous Surat Cold Coco and Mango Pulp directly via WhatsApp.",
+        description: "Order the authentic and famous Surat Cold Coco and Mango Pulp directly via WhatsApp. Manufactured in Nikol, Ahmedabad.",
         images: [
             {
                 url: "/og-image.png", // Ensure this image exists in public folder
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Prasad Cold Coco - Surat's Famous Cold Coco & Mango Pulp",
-        description: "Order the authentic and famous Surat Cold Coco and Mango Pulp directly via WhatsApp.",
+        description: "Order the authentic and famous Surat Cold Coco and Mango Pulp directly via WhatsApp. Manufactured in Nikol, Ahmedabad.",
         images: ["/og-image.png"],
     },
     robots: {
@@ -82,16 +82,16 @@ export default function RootLayout({
             "telephone": "+919099792454",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Surat, Gujarat",
-                "addressLocality": "Surat",
-                "postalCode": "395001",
+                "streetAddress": "Nikol",
+                "addressLocality": "Ahmedabad",
+                "postalCode": "382350",
                 "addressRegion": "Gujarat",
                 "addressCountry": "IN"
             },
             "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": 21.1702,
-                "longitude": 72.8311
+                "latitude": 23.0494,
+                "longitude": 72.6715
             },
             "openingHoursSpecification": {
                 "@type": "OpeningHoursSpecification",

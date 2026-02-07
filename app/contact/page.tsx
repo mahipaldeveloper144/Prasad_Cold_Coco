@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Phone, MessageCircle, MapPin, Mail } from "lucide-react";
 
 export default function ContactPage() {
@@ -32,8 +33,8 @@ export default function ContactPage() {
                             <MapPin className="w-8 h-8 text-[#4E342E]" />
                         </div>
                         <h3 className="text-xl font-bold text-[#4E342E] mb-2">Our Location</h3>
-                        <p className="text-[#4E342E]/70">Surat, Gujarat, India.</p>
-                        <p className="text-xs mt-2 text-[#4E342E]/50">Authentic taste since generations.</p>
+                        <p className="text-[#4E342E]/70">Nikol, Ahmedabad, Gujarat.</p>
+                        <p className="text-xs mt-2 text-[#4E342E]/50">Bringing the authentic Surat taste to you.</p>
                     </div>
                 </div>
 
@@ -48,6 +49,7 @@ export default function ContactPage() {
                     </a>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 }

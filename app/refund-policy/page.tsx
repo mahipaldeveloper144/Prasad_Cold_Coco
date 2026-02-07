@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function RefundPolicy() {
     return (
@@ -19,6 +20,7 @@ export default function RefundPolicy() {
                     <p>Approved refunds will be processed via your original payment method (GPay/PhonePe) within 2-3 business days.</p>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 }

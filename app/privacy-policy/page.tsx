@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function PrivacyPolicy() {
     return (
@@ -23,6 +24,7 @@ export default function PrivacyPolicy() {
                     <p>If you have questions about this policy, contact us at +91 90997 92454.</p>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 }

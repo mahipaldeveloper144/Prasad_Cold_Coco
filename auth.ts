@@ -13,14 +13,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
             async authorize(credentials) {
                 if (!credentials) return null;
+                const { username, password } = credentials;
 
-                // Hardcoded admin credentials for Phase 1
+                // Compare with environment variables
                 const isValid =
-                    credentials.username === "admin" &&
-                    credentials.password === "prasad@123";
+                    username === process.env.ADMIN_USERNAME &&
+                    password === process.env.ADMIN_PASSWORD;
 
                 if (isValid) {
-                    return { id: "1", name: "Admin", email: "admin@prasad.com" };
+                    return { id: "1", name: "Admin", email: "admin@prasadcoldcoco.in" };
                 }
                 return null;
             },

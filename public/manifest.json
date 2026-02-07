@@ -1,7 +1,7 @@
 {
     "name": "Prasad Cold Coco",
     "short_name": "Cold Coco",
-    "description": "Order the famous Surat Cold Coco and Mango Pulp directly via WhatsApp.",
+    "description": "Order Surat's famous Cold Coco and Mango Pulp. Manufactured in Nikol, Ahmedabad.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#FFF1DC",

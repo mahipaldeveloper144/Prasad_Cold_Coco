@@ -1,25 +1,26 @@
-"use client";
-
-import { createProduct } from "@/app/lib/actions";
-import { useFormStatus } from "react-dom";
+import connectDB from "@/lib/mongodb";
+import Product from "@/models/Product";
+import { updateProduct } from "@/app/lib/actions";
 import Link from "next/link";
 import { ArrowLeft, Save } from "lucide-react";
+import { notFound } from "next/navigation";
 
-function SubmitButton() {
-    const { pending } = useFormStatus();
-    return (
-        <button
-            type="submit"
-            disabled={pending}
-            className="bg-[#4E342E] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#3E2723] disabled:opacity-50 transition-colors flex items-center gap-2"
-        >
-            <Save className="w-5 h-5" />
-            {pending ? "Saving..." : "Save Product"}
-        </button>
-    );
-}
+export default async function EditProductPage({
+    params
+}: {
+    params: Promise<{ id: string }>
+}) {
+    const { id } = await params;
+    await connectDB();
+    const product = await Product.findById(id).lean();
 
-export default function AddProductPage() {
+    if (!product) {
+        notFound();
+    }
+
+    // Wrap the server action to include the ID
+    const updateProductWithId = updateProduct.bind(null, id);
+
     return (
         <div className="max-w-2xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
@@ -29,11 +30,11 @@ export default function AddProductPage() {
                 >
                     <ArrowLeft className="w-6 h-6 text-gray-600" />
                 </Link>
-                <h1 className="text-2xl font-bold text-gray-800">Add New Product</h1>
+                <h1 className="text-2xl font-bold text-gray-800">Edit Product</h1>
             </div>
 
             <div className="bg-white p-4 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
-                <form action={createProduct} className="space-y-8">
+                <form action={updateProductWithId} className="space-y-8">
                     {/* Basic Info Section */}
                     <div className="space-y-6">
                         <h2 className="text-lg font-semibold text-[#4E342E] border-b pb-2">Basic Information</h2>
@@ -45,9 +46,9 @@ export default function AddProductPage() {
                             <input
                                 name="name"
                                 type="text"
+                                defaultValue={product.name}
                                 required
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="e.g. Surat Cold Coco Premium"
                             />
                         </div>
 
@@ -59,9 +60,9 @@ export default function AddProductPage() {
                                 <input
                                     name="refId"
                                     type="text"
+                                    defaultValue={product.refId}
                                     required
                                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                    placeholder="e.g. COCO-PREM-500"
                                 />
                             </div>
                             <div>
@@ -72,9 +73,9 @@ export default function AddProductPage() {
                                     name="price"
                                     type="number"
                                     step="0.01"
+                                    defaultValue={product.price}
                                     required
                                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                    placeholder="350"
                                 />
                             </div>
                         </div>
@@ -85,6 +86,7 @@ export default function AddProductPage() {
                             </label>
                             <select
                                 name="category"
+                                defaultValue={product.category}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
                             >
                                 <option value="Coco">Cold Coco</option>
@@ -100,9 +102,9 @@ export default function AddProductPage() {
                             <input
                                 name="image"
                                 type="url"
+                                defaultValue={product.image}
                                 required
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="https://i.imgur.com/..."
                             />
                         </div>
 
@@ -114,8 +116,8 @@ export default function AddProductPage() {
                                 name="description"
                                 rows={3}
                                 required
+                                defaultValue={product.description}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="Brief summary of the product..."
                             ></textarea>
                         </div>
                     </div>
@@ -131,8 +133,8 @@ export default function AddProductPage() {
                             <textarea
                                 name="ingredients"
                                 rows={2}
+                                defaultValue={product.ingredients}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="Coco powder, sugar, milk..."
                             ></textarea>
                         </div>
 
@@ -143,8 +145,8 @@ export default function AddProductPage() {
                             <textarea
                                 name="instructions"
                                 rows={2}
+                                defaultValue={product.instructions}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="Mix with hot milk and chill..."
                             ></textarea>
                         </div>
                     </div>
@@ -160,8 +162,8 @@ export default function AddProductPage() {
                             <input
                                 name="seoTitle"
                                 type="text"
+                                defaultValue={product.seoTitle}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="Leave blank to use product name"
                             />
                         </div>
 
@@ -172,8 +174,8 @@ export default function AddProductPage() {
                             <textarea
                                 name="seoDescription"
                                 rows={2}
+                                defaultValue={product.seoDescription}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="Meta description for search engines (max 160 characters)"
                             ></textarea>
                         </div>
 
@@ -184,8 +186,8 @@ export default function AddProductPage() {
                             <input
                                 name="seoKeywords"
                                 type="text"
+                                defaultValue={product.seoKeywords}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4E342E] focus:border-transparent outline-none"
-                                placeholder="cold coco, surat coco, aam ras..."
                             />
                         </div>
                     </div>
@@ -196,7 +198,7 @@ export default function AddProductPage() {
                             <input
                                 name="inStock"
                                 type="checkbox"
-                                defaultChecked
+                                defaultChecked={product.inStock}
                                 id="inStock"
                                 className="w-5 h-5 text-[#4E342E] border-gray-300 rounded focus:ring-[#4E342E]"
                             />
@@ -207,7 +209,13 @@ export default function AddProductPage() {
                     </div>
 
                     <div className="pt-6 border-t border-gray-100 flex justify-end">
-                        <SubmitButton />
+                        <button
+                            type="submit"
+                            className="bg-[#4E342E] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#3E2723] transition-colors flex items-center gap-2"
+                        >
+                            <Save className="w-5 h-5" />
+                            Update Product
+                        </button>
                     </div>
                 </form>
             </div>
