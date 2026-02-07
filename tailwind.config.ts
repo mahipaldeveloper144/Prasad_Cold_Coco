@@ -1,0 +1,20 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: "#4E342E", // Chocolate Brown
+        secondary: "#FFF1DC", // Cream
+        accent: "#25D366", // WhatsApp Green
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;
