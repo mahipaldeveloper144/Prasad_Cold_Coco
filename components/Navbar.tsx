@@ -21,9 +21,9 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center group relative z-[60]">
-                        <div className="relative w-12 h-12 sm:w-14 sm:h-14 overflow-hidden rounded-full border-2 border-[#FFF1DC] bg-[#FFF1DC] shadow-lg">
+                        <div className="relative w-12 h-12 sm:w-14 sm:h-14 overflow-hidden">
                             <Image
-                                src="/Logo2.png"
+                                src="/logo-cream-nobg.png"
                                 alt="Prasad Cold Coco Logo"
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform"
