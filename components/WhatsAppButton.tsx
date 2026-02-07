@@ -15,7 +15,7 @@ interface WhatsAppButtonProps {
 export default function WhatsAppButton({ product }: WhatsAppButtonProps) {
     const [quantity, setQuantity] = useState(1);
     // Default phone number for now, can be moved to env later
-    const PHONE_NUMBER = "919876543210";
+    const PHONE_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+919099792454";
 
     const handleOrder = () => {
         const link = generateWhatsAppLink(PHONE_NUMBER, product, quantity);

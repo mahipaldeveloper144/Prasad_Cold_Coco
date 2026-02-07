@@ -1,36 +1,34 @@
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import ProductCard from "@/components/ProductCard";
+import connectDB from "@/lib/mongodb";
+import Product, { IProduct } from "@/models/Product";
 
-// Mock Data for Phase 1
-const PRODUCTS = [
-    {
-        id: "1",
-        name: "Surat Famous Cold Coco Powder (500g)",
-        description: "The original authentic taste of Surat. Made with premium cocoa and secret spices. Perfect for making thick, creamy cold coco at home.",
-        price: 350,
-        image: "https://placehold.co/600x400/4E342E/FFF1DC/png?text=Cold+Coco+Powder",
-        refId: "COCO-500G",
-    },
-    {
-        id: "2",
-        name: "Premium Mango Pulp (Kesar) - 850g Tin",
-        description: "Pure Kesar Mango pulp with no added preservatives. Enjoy the taste of summer all year round. Export quality sweetness.",
-        price: 220,
-        image: "https://placehold.co/600x400/FFB300/4E342E/png?text=Mango+Pulp",
-        refId: "MANGO-850G",
-    },
-    {
-        id: "3",
-        name: "Cold Coco Family Pack (1kg)",
-        description: "Double the quantity for big families. Save more with our 1kg value pack. Makes up to 20 glasses of thick coco.",
-        price: 650,
-        image: "https://placehold.co/600x400/3E2723/FFF1DC/png?text=Family+Pack+1kg",
-        refId: "COCO-1KG",
-    },
-];
+// Ensure DB connection once (Server Component optimization)
+// connectDB(); // In a server component, we call it inside the function or it runs on import if top-level called? 
+// Better to call it inside.
 
-export default function Home() {
+async function getProducts() {
+    await connectDB();
+    // Lean queries are faster and return POJOs instead of Mongoose Documents
+    const products = await Product.find({ inStock: true }).lean();
+
+    // Serialize for client component: convert _id and dates to string
+    return products.map((product: any) => ({
+        id: product._id.toString(),
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        image: product.image,
+        refId: product.refId,
+    }));
+}
+
+export const dynamic = "force-dynamic"; // Ensure fresh data on every request (important for price changes)
+
+export default async function Home() {
+    const products = await getProducts();
+
     return (
         <main className="min-h-screen bg-[#FFF1DC]">
             <Navbar />
@@ -58,14 +56,42 @@ export default function Home() {
             <section id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <h2 className="text-3xl font-bold text-[#4E342E] text-center mb-12 flex items-center justify-center gap-3">
                     <span className="w-12 h-1 bg-[#4E342E] rounded-full"></span>
-                    Our Products
+                    Authentic Surat Delicacies
                     <span className="w-12 h-1 bg-[#4E342E] rounded-full"></span>
                 </h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {PRODUCTS.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+                    {products.length > 0 ? (
+                        products.map((product) => {
+                            const productJsonLd = {
+                                "@context": "https://schema.org",
+                                "@type": "Product",
+                                "name": product.name,
+                                "description": product.description,
+                                "image": product.image,
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": product.price,
+                                    "priceCurrency": "INR",
+                                    "availability": "https://schema.org/InStock",
+                                    "url": `https://prasadcoldcoco.in/#products`
+                                }
+                            };
+                            return (
+                                <div key={product.id}>
+                                    <script
+                                        type="application/ld+json"
+                                        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+                                    />
+                                    <ProductCard product={product} />
+                                </div>
+                            );
+                        })
+                    ) : (
+                        <p className="text-center col-span-full text-[#4E342E]/50">
+                            No products available right now. Check back later!
+                        </p>
+                    )}
                 </div>
             </section>
 
