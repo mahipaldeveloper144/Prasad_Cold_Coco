@@ -63,6 +63,10 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://prasadcoldcoco.in",
     },
+    icons: {
+        icon: "/logo-chocolate-nobg.png",
+        apple: "/logo-chocolate-nobg.png",
+    },
     manifest: "/manifest.json",
 };
 

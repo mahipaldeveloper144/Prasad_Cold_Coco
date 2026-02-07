@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         primary: "#4E342E", // Chocolate Brown
         secondary: "#FFF1DC", // Cream
-        accent: "#25D366", // WhatsApp Green
+        accent: "#F7E3BA", // Highlights
       },
     },
   },

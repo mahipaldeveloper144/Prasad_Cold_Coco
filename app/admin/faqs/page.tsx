@@ -30,7 +30,7 @@ export default async function AdminFAQs() {
                 <div className="lg:col-span-1">
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 sticky top-8">
                         <h3 className="text-lg font-bold text-[#4E342E] mb-4 flex items-center gap-2">
-                            <PlusCircle className="w-5 h-5 text-[#25D366]" />
+                            <PlusCircle className="w-5 h-5 text-[#F7E3BA]" />
                             Add New FAQ
                         </h3>
                         <form action={createFAQ} className="space-y-4">

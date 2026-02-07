@@ -24,7 +24,7 @@ export default function AdminLayout({
         <div className="flex flex-col h-full">
             <div className="p-6 border-b border-[#FFF1DC]/10">
                 <Link href="/" className="group">
-                    <h1 className="text-xl font-bold group-hover:text-[#25D366] transition-colors">Admin Panel</h1>
+                    <h1 className="text-xl font-bold group-hover:text-[#F7E3BA] transition-colors">Admin Panel</h1>
                     <p className="text-xs opacity-70">Prasad Cold Coco</p>
                 </Link>
             </div>
@@ -39,12 +39,12 @@ export default function AdminLayout({
                             href={link.href}
                             onClick={() => setIsMobileMenuOpen(false)}
                             className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all group ${isActive
-                                    ? "bg-[#FFF1DC] text-[#4E342E] shadow-lg shadow-black/20"
-                                    : "hover:bg-[#FFF1DC]/10 text-[#FFF1DC]"
+                                ? "bg-[#FFF1DC] text-[#4E342E] shadow-lg shadow-black/20"
+                                : "hover:bg-[#FFF1DC]/10 text-[#FFF1DC]"
                                 }`}
                         >
                             <div className="flex items-center gap-3">
-                                <Icon className={`w-5 h-5 ${isActive ? "text-[#4E342E]" : "group-hover:text-[#25D366]"}`} />
+                                <Icon className={`w-5 h-5 ${isActive ? "text-[#4E342E]" : "group-hover:text-[#F7E3BA]"}`} />
                                 {link.name}
                             </div>
                             {isActive && <ChevronRight className="w-4 h-4" />}
