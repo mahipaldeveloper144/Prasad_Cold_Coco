@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center sm:text-left">
                     <div className="flex flex-col items-center sm:items-start space-y-6">
-                        <div className="relative w-24 h-24 overflow-hidden rounded-full border-2 border-[#FFF1DC]/20 bg-[#FFF1DC] shadow-xl p-1">
+                        <div className="relative w-24 h-24 overflow-hidden  shadow-xl p-1">
                             <Image
                                 src="/Logo2.png"
                                 alt="Prasad Cold Coco Logo"
